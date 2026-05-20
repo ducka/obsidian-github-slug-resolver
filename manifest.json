@@ -1,0 +1,10 @@
+{
+  "id": "obsidian-github-slug-resolver",
+  "name": "GitHub Slug Resolver",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "Navigate GitHub-style heading anchors in Obsidian",
+  "author": "Lucas Martin",
+  "authorUrl": "",
+  "isDesktopOnly": false
+}
