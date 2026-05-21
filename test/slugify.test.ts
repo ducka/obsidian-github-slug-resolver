@@ -27,16 +27,30 @@ describe("slugify", () => {
     expect(slugify("snake_case")).toBe("snake_case");
   });
 
-  it("collapses multiple spaces", () => {
-    expect(slugify("hello   world")).toBe("hello-world");
+  it("preserves multiple hyphens from adjacent spaces", () => {
+    // GitHub replaces each space individually — two spaces → "--"
+    expect(slugify("hello  world")).toBe("hello--world");
   });
 
-  it("collapses multiple hyphens", () => {
-    expect(slugify("hello--world")).toBe("hello-world");
+  it("preserves existing multiple hyphens", () => {
+    // GitHub does not collapse -- in slugs
+    expect(slugify("hello--world")).toBe("hello--world");
   });
 
   it("strips leading and trailing hyphens", () => {
     expect(slugify("  heading  ")).toBe("heading");
+  });
+
+  it("em dash separator produces double hyphen", () => {
+    // " — " → remove em dash → "  " (two spaces) → "--"
+    // This matches GitHub's behavior for doc-style timeline headings
+    expect(slugify("2026-05-21 1200 — My Decision")).toBe("2026-05-21-1200--my-decision");
+  });
+
+  it("em dash timeline heading matches link anchor", () => {
+    // Full reproduction of the vault:doc-style heading format
+    expect(slugify("2026-05-21 1200 — decision Add back-reference rule to vaultdoc-style"))
+      .toBe("2026-05-21-1200--decision-add-back-reference-rule-to-vaultdoc-style");
   });
 
   it("handles empty string", () => {

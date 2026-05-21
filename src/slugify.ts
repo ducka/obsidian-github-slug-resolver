@@ -4,9 +4,8 @@ export function slugify(text: string): string {
   return text
     .toLowerCase()
     .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-")
-    .replace(/^-|-$/g, "");
+    .replace(/\s/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
 export function buildSlugIndex(headings: HeadingCache[]): Map<string, string> {
