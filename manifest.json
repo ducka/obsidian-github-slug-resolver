@@ -1,5 +1,5 @@
 {
-  "id": "obsidian-github-slug-resolver",
+  "id": "github-slug-resolver",
   "name": "GitHub Slug Resolver",
   "version": "1.0.0",
   "minAppVersion": "1.4.0",
